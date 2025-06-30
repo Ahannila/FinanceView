@@ -4,7 +4,7 @@ Here's a clean and informative **README.md** you can include in your project dir
 
 ---
 
-```markdown
+markdown
 # 📈 FinanceView — Streamlit Financial Dashboard
 
 A fast and interactive financial dashboard built with **Streamlit**, **Polars**, and **yfinance** for viewing historical stock price data.
@@ -13,11 +13,11 @@ A fast and interactive financial dashboard built with **Streamlit**, **Polars**,
 
 ## 🚀 Features
 
-- 📊 Plot dynamic closing price charts for any ticker
+- Plot dynamic closing price charts for any ticker
 - ⚡ Fast performance with Polars for data processing
-- 🔍 Search and filter tickers from a pre-defined list
-- 🔄 Automatically adjusts column naming (no hardcoding)
-- 💾 Caching with `@st.cache_data` to reduce API calls
+- Search and filter tickers from a pre-defined list
+- Automatically adjusts column naming (no hardcoding)
+- Caching with `@st.cache_data` to reduce API calls
 
 ---
 
