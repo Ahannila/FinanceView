@@ -42,3 +42,6 @@ def load_ticker_data(ticker: str, start_date, end_date) -> pl.DataFrame | None:
         st.error(f"❌ Error fetching data for {ticker}: {e}")
         return None
 
+def markdown_snapshot(df: pl.DataFrame, max_rows=10) -> str:
+    pdf = df.to_pandas()[["date", "close", "volume"]]
+    return pdf.head(max_rows).to_csv(index=False)

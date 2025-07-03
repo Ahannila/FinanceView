@@ -33,7 +33,7 @@ GENERATE_ENDPOINT = f"{LOCAL_OLLAMA_URL}/api/generate"
 class OllamaClient:
     """Simple wrapper around the local Ollama HTTP API."""
 
-    def __init__(self, timeout: int = 30) -> None:  # noqa: D401  (simple description)
+    def __init__(self, timeout: int = 160) -> None:  # noqa: D401  (simple description)
         self.timeout = timeout
 
     # -------------------- internal helpers --------------------
@@ -50,7 +50,7 @@ class OllamaClient:
     def generate(
         self,
         prompt: str,
-        model: str = "deepseek-r1",
+        model: str = "mistral",
         stream: bool = False,
         **params,
     ) -> Union[str, Generator[str, None, None]]:
@@ -61,29 +61,29 @@ class OllamaClient:
             "stream": stream,
             **params,
         }
+        print("📤 Prompt sent to Ollama:\n", prompt)
 
         if stream:
             try:
                 resp = self._post(payload, stream=True)
                 resp.raise_for_status()
-                # Ollama streams *newline‑delimited* JSON objects
                 for raw in resp.iter_lines():
                     if not raw:
                         continue
                     try:
                         message = json.loads(raw.decode("utf-8"))
                     except json.JSONDecodeError:
-                        # Skip malformed chunks
                         continue
 
-                    # `done` flag signals final chunk – usually has empty response
                     text_piece = message.get("response", "")
                     if text_piece:
+                        #print("🧠 DeepSeek:", text_piece, flush=True)  # 👈 👈 👈 log LLM thinking
                         yield text_piece
                     if message.get("done"):
                         break
             except requests.RequestException as exc:
                 raise RuntimeError(f"Streaming failed: {exc}") from exc
+
         else:
             try:
                 resp = self._post(payload, stream=False)
@@ -99,7 +99,7 @@ class OllamaClient:
 
 def ask_ollama(
     prompt: str,
-    model: str = "deepseek-r1",
+    model: str = "mistral",
     stream: bool = False,
     **params,
 ) -> str:
