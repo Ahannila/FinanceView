@@ -20,8 +20,6 @@ def render_sidebar(tickers=DEFAULT_TICKERS, default_range=DEFAULT_DATE_RANGE):
     start_date = st.sidebar.date_input("Start Date", default_range[0])
     end_date = st.sidebar.date_input("End Date", default_range[1])
 
-    if st.sidebar.button("Go to Analysis Page"):
-        st.switch_page("pages/analysis.py")
 
     # Ensure end_date >= start_date
     if start_date > end_date:

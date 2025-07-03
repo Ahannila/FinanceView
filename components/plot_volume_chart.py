@@ -2,12 +2,12 @@ import plotly.graph_objects as go
 import streamlit as st
 import polars as pl
 
-def plot_volume_chart(df):
+def plot_volume_chart(pl_df):
     fig = go.Figure()
     fig.add_trace(go.Bar(
-        x=df.index,
-        y=df['Volume'],
-        name='Volume'
+        x=pl_df['date'],
+        y=pl_df['volume'],
+        name='volume'
     ))
 
     fig.update_layout(

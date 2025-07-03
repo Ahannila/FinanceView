@@ -11,5 +11,6 @@ def render_head():
     performance over time. The app uses **yfinance** to fetch stock data
     and **Plotly** to create interactive charts.
     """
+    
 )
 
