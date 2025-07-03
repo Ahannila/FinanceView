@@ -1,18 +1,15 @@
 import streamlit as st
 
 def render_head():
-    st.title("Hello Streamlit-er 👋")
+    st.title("Hello Reader👋")
     st.markdown(
     """ 
-    This is a playground for you to try Streamlit and have fun. 
+    FinanceView is a **Streamlit** app that allows you to
+    visualize stock data in a simple and interactive way.
 
-    **There's :rainbow[so much] you can build!**
-    
-    We prepared a few examples for you to get started. Just 
-    click on the buttons above and discover what you can do 
-    with Streamlit. 
+    You can select a stock ticker and a date range to see the stock's
+    performance over time. The app uses **yfinance** to fetch stock data
+    and **Plotly** to create interactive charts.
     """
 )
 
-if st.button("Send balloons!"):
-    st.balloons()

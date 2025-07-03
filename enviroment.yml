@@ -37,4 +37,7 @@ dependencies:
     - idna==3.10
     - soupsieve==2.7
     - webencodings==0.5.1
+    - backtrader
+    - yfinance
+    - tabulate
 prefix: /home/haarhaar/.conda/envs/financeview
